@@ -13,7 +13,7 @@ export const Skills = (props: Props) => {
                 <div className={s.skills}>
                     <Skill title={'JS'} description={'BLBLBLLBLB'}/>
                     <Skill title={'CSS'} description={'BLBLBLLBLB'}/>
-                    <Skill title={'React'} description={'BLBLBLLBLB'}/>
+                    <Skill title={'React'} description={'BLBLBLLBLB BLBLBLLBLB BLBLBLLBLB BLBLBLLBLB'}/>
                 </div>
             </div>
         </div>

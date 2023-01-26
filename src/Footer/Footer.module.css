@@ -16,7 +16,11 @@
 
 .links{
     display: flex;
-    gap:50px;
+    /*gap:50px;*/
+    min-width: 30%;
+    justify-content: space-between;
+    max-width: 100%;
+    gap:5px;
 }
 
 .links img {

@@ -19,7 +19,7 @@ export const Work = (props: Props) => {
             </div>
             <div className={s.description}>
                 <h3>{props.title}</h3>
-                <span className={s.description}>{props.description}</span>
+                <span>{props.description}</span>
             </div>
         </div>
     );
