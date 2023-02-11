@@ -1,5 +1,5 @@
 .skillsBlock{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background-color: #7fecff;
     display: flex;
     justify-content: center;
@@ -15,7 +15,12 @@
 }
 
 .title{
-    background-color: gray;
+    font-size: 13vw;
+    line-height: 17vw;
+    -webkit-text-fill-color: rgba(0,0,0,0.1);
+    -webkit-background-clip: text;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#000, #000);
 }
 
 .skills{
