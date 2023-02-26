@@ -5,31 +5,16 @@ import {
   setBackgroundSize,
   WriteParamsObserver,
 } from '../hooks/useIntersectionObserver'
+import Title from '../common/Title/Title'
 
 type Props = {}
 export const Skills = (props: Props) => {
-  const ref = useRef(null)
-  const refOfSkills = useRef<HTMLDivElement>(null)
-
-  const expFuntion = () => {
-    if (ref && ref.current) {
-      setBackgroundSize(ref, refOfSkills)
-    }
-  }
-  useEffect(() => {
-    document.addEventListener('scroll', expFuntion)
-    return () => {
-      document.removeEventListener('scroll', expFuntion)
-    }
-  }, [])
   return (
     <>
       <div className={s.skillsBlock}>
         <div className={s.container}>
-          <span className={s.title} ref={ref}>
-            Skills
-          </span>
-          <div ref={refOfSkills} className={s.skills}>
+          <Title title={'Skills'} />
+          <div className={s.skills}>
             <Skill title={'JS'} description={'BLBLBLLBLB'} />
             <Skill title={'CSS'} description={'BLBLBLLBLB'} />
             <Skill

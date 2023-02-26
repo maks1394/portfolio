@@ -5,7 +5,6 @@ export const useIntersectionObserver = (
   options: IntersectionObserverInit
 ) => {
   const [isIntersecting, setIsIntersecting] = React.useState(false)
-
   React.useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting)
@@ -19,25 +18,20 @@ export const useIntersectionObserver = (
       observer.unobserve(ref.current)
     }
   }, [])
-
   return isIntersecting
 }
 
 export const WriteParamsObserver = (ref: any) => {
   if (!ref) return ''
   const elem = ref.current
-  let resultExp = ''
   const rect = elem?.getBoundingClientRect()
   const resultObj: { [key: string]: number } = {}
   for (let key in rect) {
     if (typeof rect[key] !== 'function') {
-      //  console.log(`${key} : ${rect[key]}`);
-      resultExp += `${key} : ${rect[key]} `
       resultObj[key] = rect[key]
     }
   }
   resultObj.windowHeight = window.innerHeight
-
   return resultObj
 }
 
@@ -53,25 +47,38 @@ type paramsOfElement = {
   y: number
 }
 
-export const setBackgroundSize = (ref: RefObject<HTMLHeadingElement>, ref2?: any) => {
+export const setBackgroundSize = (
+  ref: RefObject<HTMLSpanElement>,
+  template:(percent:number)=>void=template1,
+  styleProperty: keyof CSSStyleDeclaration = 'backgroundSize',
+) => {
   const paramsOfObject: paramsOfElement = WriteParamsObserver(
     ref
   ) as paramsOfElement
-  const h1 = paramsOfObject?.height / 2
-  let h2 = -300
-  // if (ref2) {
-  //   const paramsOfObject2: paramsOfElement = WriteParamsObserver(
-  //     ref2
-  //   ) as paramsOfElement
-  //   h2 = -paramsOfObject2?.height / 2
-  // }
+  let stylePropertyInCss = keyReplace(styleProperty)
+
+  const h1 = paramsOfObject?.height / 2 // высота от bottom элемента до точки, где мы хотим, чтобы percent был равен нулю. Ось направлена вверх.
+  let h2 = -paramsOfObject.windowHeight / 2 + paramsOfObject?.height / 2 // высота от bottom элемента до точки, где мы хотим, чтобы percent был равен 100. Ось направлена вверх.
   let percent =
     (100 / (h2 - h1)) * (paramsOfObject.bottom - paramsOfObject.windowHeight) +
     (100 * h1) / (h1 - h2)
   percent = Math.max(Math.round(percent * 100) / 100, 0)
+
   if (ref.current) {
-    ref.current.style.backgroundSize = `${percent}% 100%`
-    console.log(`${percent}% 100%`)
+    // ref.current.style[styleProperty] = `${percent}% 100%`
+    ref.current.style.cssText = `${stylePropertyInCss}: ${template(percent)}`
+    // ref.current.setAttribute('style',`background-size: ${percent}% 100%;`)
   }
-  // debugger
+}
+
+function template1 (percent:number):string{
+  return `${percent}% 100%`
+}
+
+const template1Creator = ()=>{
+  return template1
+}
+
+function keyReplace(key: any) {
+  return key.replace(/([A-Z])/g, '-$1').toLowerCase() + ''
 }

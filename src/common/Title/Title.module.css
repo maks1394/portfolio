@@ -1,0 +1,10 @@
+.title{
+    font-size: 13vw;
+    line-height: 17vw;
+    -webkit-text-fill-color: rgba(0,0,0,0.1);
+    -webkit-background-clip: text;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#000, #000);
+    background-size: 0% 100%;
+    transition: background-size .3s linear;
+}

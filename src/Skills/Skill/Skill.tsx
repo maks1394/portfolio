@@ -46,7 +46,7 @@ export const Skill = (props: Props) => {
       AnimationProgress(progressBar, valueContainer, 0, 65, 20)
       setFirstRender(false)
     }
-  }, [onScreen, firstRender])
+  }, [onScreen])
   return (
     <div className={s.skill}>
       {/* <div className={s.icon}></div> */}
