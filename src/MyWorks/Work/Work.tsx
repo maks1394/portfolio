@@ -1,28 +1,35 @@
 import React, { useEffect, useRef } from 'react'
 import s from './Work.module.css'
 import SuperButton from '../../common/SuperButton/SuperButton'
+import { StyledButton } from '../../common/SuperButton/StyledButton/StyledButton'
 
-type Props = {
+export type WorkPropsType = {
   img: string
   title: string
   description: string
   src: string
+  className?: string
 }
-export const Work = (props: Props) => {
+export const Work = (props: WorkPropsType) => {
   return (
-    <div className={s.card}>
+    <div className={s.card + ' ' + props.className}>
       <div className={s.imageContainer}>
         <img src={props.img} alt="work" className={s.img} />
-        <a href="https://github.com/">
-          <SuperButton className={s.button} xType={'secondary'}>
-            Look
-          </SuperButton>
-        </a>
+        {/*<a href="https://github.com/">*/}
+        {/*    <SuperButton xType={'red'} className={s.button}>*/}
+        {/*        Look*/}
+        {/*    </SuperButton>*/}
+        {/*</a>*/}
       </div>
-      <div className={s.description}>
+      {/* <div className={s.description}>
         <h3>{props.title}</h3>
         <span>{props.description}</span>
-      </div>
+      </div> */}
+      {/* <a href="https://github.com/">
+                <SuperButton xType={'red'} className={s.button}>
+                    Look
+                </SuperButton>
+            </a> */}
     </div>
   )
 }

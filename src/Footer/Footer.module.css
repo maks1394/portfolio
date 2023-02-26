@@ -1,16 +1,18 @@
 .footerBlock{
-    background-color: #d4ace8;
+    background-image: linear-gradient(to top right,rgb(24,24,27),rgb(39,39,42));
     display: flex;
     justify-content: center;
 }
 
 .container{
     width: 80%;
-    border:1px solid;
+    /* border:1px solid; */
     /*height: 100%;*/
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap:1vw;
+    color:#fff;
     /*justify-content: space-between;*/
 }
 
@@ -20,10 +22,33 @@
     min-width: 30%;
     justify-content: space-between;
     max-width: 100%;
-    gap:5px;
+    gap:15px;
 }
 
 .links img {
     width: 50px;
     height: 50px;
+    filter: invert(38%) sepia(84%) saturate(3482%) hue-rotate(227deg) brightness(103%) contrast(89%);
+    opacity: 0.5;
+    transition:filter .3s ease-in;
+}
+.links img:hover {
+    filter: invert(65%) sepia(48%) saturate(5941%) hue-rotate(152deg) brightness(100%) contrast(95%);
+}
+
+
+
+.title{
+    margin-top:1vw;
+    color: #939394;
+}
+
+.year{
+    color: #939394;
+}
+
+@media only screen and (max-width: 800px){
+    .footerBlock{
+        margin-bottom: 3.5rem;
+    }
 }

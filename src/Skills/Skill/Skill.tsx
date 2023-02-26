@@ -17,8 +17,8 @@ const AnimationProgress = (
       valueContainer.current.textContent = `${progressValue}%`
       progressBar.current.style.background = `
             conic-gradient(
-                #4d5bf9 ${progressValue * 3.6}deg,
-                #cadcff ${progressValue * 3.6}deg
+                rgb(239 68 68) ${progressValue * 3.6}deg,
+                rgba(255, 255, 255) ${progressValue * 3.6}deg
             )
         `
     }

@@ -71,6 +71,61 @@ export const setBackgroundSize = (
   }
 }
 
+export const setOpacityHide = (
+    ref: RefObject<HTMLSpanElement>,
+    // template:(percent:number)=>void=template1,
+    // styleProperty: keyof CSSStyleDeclaration = 'backgroundSize',
+) => {
+  const paramsOfObject: paramsOfElement = WriteParamsObserver(
+      ref
+  ) as paramsOfElement
+  // let stylePropertyInCss = keyReplace(styleProperty)
+
+  const h1 = 0 // высота от bottom элемента до точки, где мы хотим, чтобы percent был равен нулю. Ось направлена вверх.
+  let h2 = -paramsOfObject.windowHeight / 2// высота от bottom элемента до точки, где мы хотим, чтобы percent был равен 100. Ось направлена вверх.
+  let y = paramsOfObject.bottom - paramsOfObject.windowHeight
+  if (y>h1 || y<h2) return
+  // console.log('y',y)
+  let percent =
+      (100 / (h2 - h1)) * (paramsOfObject.bottom - paramsOfObject.windowHeight) +
+      (100 * h1) / (h1 - h2)
+  percent = Math.max(Math.round(percent * 10) / 10, 0) /1.25 // добавил разделить на 2 чтобы масимальное число процентов было 50
+
+  if (ref.current) {
+    // ref.current.style[styleProperty] = `${percent}% 100%`
+    ref.current.style.cssText = `opacity: calc(1 - ${percent/100})`
+    // console.log(`opacity: ${percent/100}`)
+    // ref.current.setAttribute('style',`background-size: ${percent}% 100%;`)
+  }
+}
+export const setOpacityShow = (
+    ref: RefObject<HTMLSpanElement>,
+    // template:(percent:number)=>void=template1,
+    // styleProperty: keyof CSSStyleDeclaration = 'backgroundSize',
+) => {
+  const paramsOfObject: paramsOfElement = WriteParamsObserver(
+      ref
+  ) as paramsOfElement
+  // let stylePropertyInCss = keyReplace(styleProperty)
+
+  const h1 = paramsOfObject.height // высота от bottom элемента до точки, где мы хотим, чтобы percent был равен нулю. Ось направлена вверх.
+  let h2 = -paramsOfObject.windowHeight / 2 + paramsOfObject.height// высота от bottom элемента до точки, где мы хотим, чтобы percent был равен 100. Ось направлена вверх.
+  let y = paramsOfObject.bottom - paramsOfObject.windowHeight
+  if (y>h1 || y<h2) return
+  let percent = 20 + 0.8*(
+      (100 / (h2 - h1)) * (paramsOfObject.bottom - paramsOfObject.windowHeight) +
+      (100 * h1) / (h1 - h2)
+  )
+  percent = Math.max(Math.round(percent * 10) / 10, 0)
+
+  if (ref.current) {
+    // ref.current.style[styleProperty] = `${percent}% 100%`
+    ref.current.style.cssText = `opacity: calc(${percent/100})`
+    // console.log(`opacity: ${percent/100}`)
+    // ref.current.setAttribute('style',`background-size: ${percent}% 100%;`)
+  }
+}
+
 function template1 (percent:number):string{
   return `${percent}% 100%`
 }

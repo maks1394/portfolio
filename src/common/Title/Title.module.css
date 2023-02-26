@@ -1,10 +1,12 @@
 .title{
     font-size: 13vw;
+    margin: 3vw;
     line-height: 17vw;
-    -webkit-text-fill-color: rgba(0,0,0,0.1);
+    -webkit-text-fill-color: rgba(156,163,175,0.1);
     -webkit-background-clip: text;
     background-repeat: no-repeat;
-    background-image: linear-gradient(#000, #000);
-    background-size: 0% 100%;
+    background-image: linear-gradient(to bottom,rgb(6 182 212), rgb(99 102 241));
+    /*background-image: linear-gradient(to bottom,rgb(255 255 255), rgb(255 255 255));*/
+    background-size: 100% 100%;
     transition: background-size .3s linear;
 }

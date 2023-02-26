@@ -7,25 +7,7 @@ type Props = {
 }
 
 const Title = ({ title }: Props) => {
-  const ref = useRef<HTMLHeadingElement>(null)
-
-  const setFunction = () => {
-    if (ref && ref.current) {
-      setBackgroundSize(ref)
-    }
-  }
-  useEffect(() => {
-    document.addEventListener('scroll', setFunction)
-    return () => {
-      document.removeEventListener('scroll', setFunction)
-    }
-  }, [])
-
-  return (
-    <span className={s.title} ref={ref}>
-      {title}
-    </span>
-  )
+  return <span className={s.title}>{title}</span>
 }
 
 export default Title
